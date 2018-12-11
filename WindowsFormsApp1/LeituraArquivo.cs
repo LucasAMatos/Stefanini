@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Data;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProgramaCadastro
 {
@@ -13,7 +14,9 @@ namespace ProgramaCadastro
     /// </summary>
     public class LeituraArquivo
     {
+        private OpenFileDialog pOpfArquivo;
         private string filtro;
+        private string fileContent;
         private char marcaLinha;
         private char marcaColuna;
 
@@ -26,33 +29,59 @@ namespace ProgramaCadastro
         /// </summary>
         public LeituraArquivo()
         {
+            pOpfArquivo = new OpenFileDialog();
+            filtro = "txt files (*.txt)|*.txt";
             marcaLinha = ';';
             marcaColuna = ',';
+        }
+                
+        /// <summary>
+        /// Método para leitura inicial do arquivo. O retorno será guardado
+        /// </summary>
+        public void LerAquivo()
+        {
+            pOpfArquivo.Filter = filtro;
+
+            if (pOpfArquivo.ShowDialog() == DialogResult.OK)
+            {
+                var filePath = string.Empty;
+
+                //Get the path of specified file
+                filePath = pOpfArquivo.FileName;
+                
+
+                //Read the contents of the file into a stream
+                var fileStream = pOpfArquivo.OpenFile();
+
+                using (StreamReader reader = new StreamReader(fileStream))
+                {
+                    fileContent = reader.ReadToEnd();
+                }
+            }
         }
 
         /// <summary>
         /// Método que irá preencher a tabela conforme os parâmetros de captura do arquivo.
         /// </summary>
         /// <returns>Retorna tabela enviada no arquivo</returns>
-        public DataSet PreencheTabela(string fileContent)
+        public DataTable PreencheTabela()
         {
-            DataSet ds = new DataSet();
-            ds.Tables.Add();
+            DataTable dt = new DataTable();
 
             string[] linhas = fileContent.Split(marcaLinha);
 
             if (linhas.Count() > 0 && linhas[0].Split(marcaColuna).Count() > 0)
             {
                 for (int i = 0; i < linhas[0].Split(marcaColuna).Count(); i++)
-                    ds.Tables[0].Columns.Add(string.Concat("Column", i + 1));
+                    dt.Columns.Add();
 
                 foreach (string linha in fileContent.Split(marcaLinha))
                 {
-                    ds.Tables[0].Rows.Add(linha.Split(marcaColuna));
+                    dt.Rows.Add(linha.Split(marcaColuna));
                 }
             }
 
-            return ds;
+            return dt;
         }
     }
 }

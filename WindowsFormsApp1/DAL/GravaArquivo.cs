@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Text;
 using System.IO;
-using System.Windows.Forms;
 
 namespace ProgramaCadastro
 {
@@ -30,94 +29,60 @@ namespace ProgramaCadastro
         /// </summary>
         /// <param name="pTabela"></param>
         /// <param name="pDados"></param>
-        public void GravarDados(string pTabela, DataTable pDados)
+        public void GravarDados(string pTabela, DataSet pDs)
         {
-            string caminhoArquivo = string.Concat(Application.StartupPath.Replace("\\bin\\Debug", string.Empty, "\\Procedures\\"));
-
             using (SqlConnection conn =
                  new SqlConnection(connString))
             {
                 SqlCommand sqlCommando = new SqlCommand();
                 sqlCommando.Connection = conn;
                 sqlCommando.CommandType = System.Data.CommandType.StoredProcedure;
-                
-
-                if (pTabela == "CLIENTE")
-
-                    switch (pTabela)
-                    {
-                        case "CLIENTE":
-                            SqlCommand command = new SqlCommand("[dbo].SP_IncCLiente_V1", conn);
-                            sqlCommando.Parameters.AddWithValue();
-                            sqlCommando.Parameters.AddWithValue();
-                            sqlCommando.Parameters.AddWithValue();
-                            sqlCommando.Parameters.AddWithValue();
-                            sqlCommando.Parameters.AddWithValue();
-                            sqlCommando.Parameters.AddWithValue();
-                            break;
-                        case "PRODUTO":
-                            SqlCommand command = new SqlCommand("[dbo].SP_IncProd_V1", conn);
-                            sqlCommando.Parameters.AddWithValue();
-                            sqlCommando.Parameters.AddWithValue();
-                            sqlCommando.Parameters.AddWithValue();
-                            break;
-                    }
 
                 conn.Open();
-                command.ExecuteNonQuery();
+
+                if (pDs != null && pDs.Tables != null && pDs.Tables.Count > 0)
+                {
+
+                    if (pDs.Tables[0].Columns != null && pDs.Tables[0].Rows.Count > 0)
+                    {
+                        int fim = pDs.Tables[0].Columns.Count;
+
+                        for (int row = 0; row < pDs.Tables[0].Rows.Count; row++)
+                        {
+                            switch (pTabela)
+                            {
+                                case "Cliente":
+                                    sqlCommando = new SqlCommand("EXEC [dbo].SP_IncCLiente_V1", conn);
+                                    break;
+                                case "Produto":
+                                    sqlCommando = new SqlCommand("EXEC [dbo].SP_IncProd_V1", conn);
+                                    break;
+                            }
+
+                            for (int i = 0; i < fim; i++)
+                            {
+                                string value = string.Concat(" ", pDs.Tables[0].Rows[row][string.Concat("Column", i + 1)]);
+
+                                value = value == "true" ? "1" : (value == "false" ? "0" : value);
+
+                                sqlCommando.CommandText += string.Concat(" ", quotedString(pDs.Tables[0].Rows[row][string.Concat("Column", i + 1)].ToString()));
+                                if ((i + 1) < fim)
+                                    sqlCommando.CommandText += ",";
+                            }
+
+                            sqlCommando.ExecuteNonQuery();
+                        }
+                    }
+                }
+
                 conn.Close();
+
             }
         }
 
-
-
-        /// <summary>
-        /// Criado apenas para poder testar adequadamente o programa
-        /// </summary>
-        /// <returns></returns>
-        public int CriarProcedures()
+        private string quotedString(string value)
         {
-            SqlConnection conn = new SqlConnection(connString);
-            int intReturn;
-
-            using (conn)
-            {
-                SqlCommand sqlCommando = new SqlCommand();
-                sqlCommando.Connection = conn;
-                string caminhoArquivo = Application.StartupPath.Replace("\\bin\\Debug", string.Empty);
-                sqlCommando.CommandText = File.ReadAllText(string.Concat(caminhoArquivo, "\\Procedures\\Criacao de Tabelas.sql"));
-                sqlCommando.CommandType = System.Data.CommandType.Text;
-
-                conn.Open();
-
-                intReturn = (int)sqlCommando.ExecuteNonQuery();
-
-                if (intReturn < 0)
-                {
-                    conn.Close();
-                    return intReturn;
-                }
-                sqlCommando.CommandText = File.ReadAllText(string.Concat(caminhoArquivo, "\\Procedures\\SP_IncCliente.sql"));
-                sqlCommando.CommandType = System.Data.CommandType.Text;
-
-                intReturn = (int)sqlCommando.ExecuteNonQuery();
-
-
-                if (intReturn < 0)
-                {
-                    conn.Close();
-                    return intReturn;
-                }
-
-                sqlCommando.CommandText = File.ReadAllText(string.Concat(caminhoArquivo, "\\Procedures\\SP_IncProd.sql"));
-                sqlCommando.CommandType = System.Data.CommandType.Text;
-
-                intReturn = (int)sqlCommando.ExecuteNonQuery();
-
-                conn.Close();
-            }
-
-            return intReturn;
+            return string.Concat("'", value, "'");
         }
     }
 }

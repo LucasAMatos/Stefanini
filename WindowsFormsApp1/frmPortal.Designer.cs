@@ -31,7 +31,6 @@
             this.btnCliente = new System.Windows.Forms.Button();
             this.brnProdutos = new System.Windows.Forms.Button();
             this.btnSair = new System.Windows.Forms.Button();
-            this.btnProcedures = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCliente
@@ -56,7 +55,7 @@
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(31, 135);
+            this.btnSair.Location = new System.Drawing.Point(31, 94);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(156, 30);
             this.btnSair.TabIndex = 2;
@@ -64,22 +63,11 @@
             this.btnSair.UseVisualStyleBackColor = true;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
-            // btnProcedures
-            // 
-            this.btnProcedures.Location = new System.Drawing.Point(31, 94);
-            this.btnProcedures.Name = "btnProcedures";
-            this.btnProcedures.Size = new System.Drawing.Size(156, 35);
-            this.btnProcedures.TabIndex = 3;
-            this.btnProcedures.Text = "Criar Procedures";
-            this.btnProcedures.UseVisualStyleBackColor = true;
-            this.btnProcedures.Click += new System.EventHandler(this.btnProcedure_Click);
-            // 
             // frmPortal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(212, 205);
-            this.Controls.Add(this.btnProcedures);
+            this.ClientSize = new System.Drawing.Size(212, 141);
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.brnProdutos);
             this.Controls.Add(this.btnCliente);
@@ -94,6 +82,5 @@
         private System.Windows.Forms.Button btnCliente;
         private System.Windows.Forms.Button brnProdutos;
         private System.Windows.Forms.Button btnSair;
-        private System.Windows.Forms.Button btnProcedures;
     }
 }

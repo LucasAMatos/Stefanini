@@ -33,14 +33,6 @@ namespace ProgramaCadastro
             frmCaptura frmProduto = new frmCaptura("Produto");
             frmProduto.Show();
         }
-
-        private void btnProcedure_Click(object sender, EventArgs e)
-        {
-            GravaArquivo grvArquivo = new GravaArquivo();
-            if (grvArquivo.CriarProcedures() >= 0)
-                MessageBox.Show("Procedures Criadas com Sucesso.");
-            else
-                MessageBox.Show("Houve Erro na Criação de Procedures.");
-        }
+        
     }
 }
