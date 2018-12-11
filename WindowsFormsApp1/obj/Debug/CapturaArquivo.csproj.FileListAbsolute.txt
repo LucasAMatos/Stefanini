@@ -1,0 +1,16 @@
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\EntityFramework.dll
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\EntityFramework.xml
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\CapturaArquivo.csprojAssemblyReference.cache
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\ProgramaCadastro.frmCaptura.resources
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\ProgramaCadastro.frmPortal.resources
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\CapturaArquivo.csproj.GenerateResource.cache
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\CapturaArquivo.csproj.CoreCompileInputs.cache
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\CapturaArquivo.csproj.CopyComplete
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\Aandda\Downloads\WindowsFormsApp1\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb

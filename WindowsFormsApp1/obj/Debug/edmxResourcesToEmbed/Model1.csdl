@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ProdutoSet" EntityType="masterModel.Produto" />
+    <EntitySet Name="ClienteSet" EntityType="masterModel.Cliente" />
+    <AssociationSet Name="ProdutoCliente" Association="masterModel.ProdutoCliente">
+      <End Role="Produto" EntitySet="ProdutoSet" />
+      <End Role="Cliente" EntitySet="ClienteSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Produto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="masterModel.ProdutoCliente" FromRole="Produto" ToRole="Cliente" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" />
+    <Property Name="Sobrenome" Type="String" Nullable="false" />
+    <Property Name="dtNascimento" Type="String" Nullable="false" />
+    <Property Name="Sexo" Type="String" Nullable="false" />
+    <Property Name="email" Type="String" Nullable="false" />
+    <Property Name="ativo" Type="String" Nullable="false" />
+    <NavigationProperty Name="Produto" Relationship="masterModel.ProdutoCliente" FromRole="Cliente" ToRole="Produto" />
+  </EntityType>
+  <Association Name="ProdutoCliente">
+    <End Type="masterModel.Produto" Role="Produto" Multiplicity="*" />
+    <End Type="masterModel.Cliente" Role="Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

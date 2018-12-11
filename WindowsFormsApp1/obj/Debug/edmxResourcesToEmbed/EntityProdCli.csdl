@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProgramaCadastro" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ProdutoSet" EntityType="ProgramaCadastro.Produto" />
+    <EntitySet Name="ClienteSet" EntityType="ProgramaCadastro.Cliente" />
+  </EntityContainer>
+  <EntityType Name="Produto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" />
+    <Property Name="Sobrenome" Type="String" Nullable="false" />
+    <Property Name="dtNascimento" Type="String" Nullable="false" />
+    <Property Name="Sexo" Type="String" Nullable="false" />
+    <Property Name="email" Type="String" Nullable="false" />
+    <Property Name="ativo" Type="String" Nullable="false" />
+  </EntityType>
+</Schema>
